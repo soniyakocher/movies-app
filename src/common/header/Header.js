@@ -26,7 +26,7 @@ const customStyles = {
 
 const TabContainer = function (props) {
     return (
-        <Typography component="div" style={{ padding: 0 }}>
+        <Typography component="div" style={{ padding: 0 ,textAlign:'center'}}>
             {props.children}
         </Typography>
 
@@ -77,18 +77,19 @@ class Header extends Component {
                         <Tab label="Register" />
                     </Tabs>
 
-                    <TabContainer>
-                        <FormControl required>
-                            <InputLabel htmlFor="username" >Username</InputLabel>
-                            <Input type="text" id="username" />
+                    <TabContainer >
+                        <FormControl required style={{marginTop:10, padding:2}}>
+                            <InputLabel htmlFor="username" style={{margin:5 ,padding:1}}>Username</InputLabel>
+                            <Input type="text" id="username" style={{margin:5, padding :7 ,width:350}}/>
+                         </FormControl>
+                        <br/><br/>
 
-                        </FormControl><br/>
+                        <FormControl required >
+                            <InputLabel htmlFor="password"style={{margin:5 ,padding:0}} >Password</InputLabel>
+                            <Input type="password" id="password" style={{margin:5, padding :7,width:350}}/>
 
-                        <FormControl required>
-                            <InputLabel htmlFor="password" >Password</InputLabel>
-                            <Input type="password" id="password" />
-
-                        </FormControl>
+                        </FormControl><br/> <br/>
+                        <Button  variant="ontained" color="primary">LOGIN</Button>
 
                     </TabContainer>
                 </Modal>
