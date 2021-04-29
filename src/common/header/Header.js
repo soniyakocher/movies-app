@@ -12,6 +12,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 
 import PropTypes from 'prop-types';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const customStyles = {
     content: {
@@ -44,7 +45,10 @@ class Header extends Component {
 
         this.state = {
             modalIsOpen: false,
-            value: 0
+            value: 0,
+            username:'',
+            usernameRequired:'dispNone'
+
         };
     }
 
@@ -65,7 +69,13 @@ class Header extends Component {
     }
 
 
+loginClickHandler=()=>{
+    this.state.username === "" ? this.setState({usernameRequired:"dispBlock"}):this.setState({usernameRequired:"dispNone"})
+}
 
+inputUsernameChangeHandler=(e)=>{
+ this.setState({username: e.target.value})
+}
     render() {
         return (
             <div>
@@ -85,7 +95,14 @@ class Header extends Component {
                     <TabContainer >
                         <FormControl required style={{marginTop:10, padding:2}}>
                             <InputLabel htmlFor="username" style={{margin:5 ,padding:1}}>Username</InputLabel>
-                            <Input type="text" id="username" style={{margin:5, padding :7 ,width:350}}/>
+                            <Input type="text" id="username" style={{margin:5, padding :7 ,width:350}} username={this.state.username} onChange={this.inputUsernameChangeHandler}/>
+                            
+                            <FormHelperText className={this.state.usernameRequired}>
+                                <span className="red">
+                                    required
+                                </span>
+                            </FormHelperText>
+                         
                          </FormControl>
                         <br/><br/>
 
@@ -94,7 +111,7 @@ class Header extends Component {
                             <Input type="password" id="password" style={{margin:5, padding :7,width:350}}/>
 
                         </FormControl><br/> <br/>
-                        <Button  variant="contained" color="primary">LOGIN</Button>
+                        <Button  variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
 
                     </TabContainer>
                    }
