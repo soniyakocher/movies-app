@@ -20,6 +20,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Checkbox from '@material-ui/core/Checkbox'
 import artists from '../../common/artists'
+import { TextField } from '@material-ui/core';
 
 const styles = theme => ({
     root: {
@@ -140,9 +141,8 @@ this.setState({artists:e.target.value})
                                             </MenuItem>
                                         ))}
                                     </Select>
-
-
-                                </FormControl>
+                                 </FormControl>
+                                
                                 <FormControl className={classes.formControl}>
                                     <InputLabel htmlFor="select-multiple-checkBox">Artist</InputLabel>
                                     <Select
@@ -159,7 +159,17 @@ this.setState({artists:e.target.value})
                                             </MenuItem>
                                         ))}
                                     </Select>
+                                    </FormControl>
 
+                                <FormControl className={classes.formControl}>
+                                    <TextField
+                                    id="releaseDateStart"
+                                    label="Release Date Start"
+                                    type="date"
+                                    defaultValue=""
+                                    InputLabelProps={{shrink:true}}>
+
+                                    </TextField>
 
                                 </FormControl>
                             </CardContent>
