@@ -1,4 +1,4 @@
-import React ,{Component} from 'react'
+import React, { Component } from 'react'
 import './Home.css';
 import Header from '../../common/header/Header';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,9 +10,16 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
- 
+
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
+
+import genres from '../../common/genres'
+import Select from "@material-ui/core/Select"
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Checkbox from '@material-ui/core/Checkbox'
+import artists from '../../common/artists'
 
 const styles = theme => ({
     root: {
@@ -38,26 +45,38 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         minWidth: 240,
         maxWidth: 240
-     },
-     title: {
+    },
+    title: {
         color: theme.palette.primary.light,
-     }
+    }
 });
 
 class Home extends Component {
     constructor(props) {
         super(props)
-    
+
         this.state = {
-             movieName: ""
+            movieName: "",
+            genres: [],
+            artists:[]
         }
     }
-    
 
-    movieNameChangeHandler=(e)=>{
-        this.setState({movieName: e.target.value})
-       
+
+    movieNameChangeHandler = (e) => {
+        this.setState({ movieName: e.target.value })
+
     }
+
+    genreSelectHandler=(e)=>{
+        this.setState({genres:e.target.value})
+    }
+
+    artistSelectHandler=(e)=>{
+this.setState({artists:e.target.value})
+    }
+
+
     render() {
         const { classes } = this.props;
         return (
@@ -101,7 +120,46 @@ class Home extends Component {
 
                                 <FormControl className={classes.formControl}>
                                     <InputLabel htmlFor="movieName">Movie Name</InputLabel>
-                                    <Input id="movieName" onChange={this.movieNameChangeHandler}/>
+                                    <Input id="movieName" onChange={this.movieNameChangeHandler} />
+
+                                </FormControl>
+
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel htmlFor="select-multiple-checkBox">Genre</InputLabel>
+                                    <Select
+                                        multiple
+                                        input={<Input id="select-multiple-checkBox" />}
+                                        renderValue={selected => selected.join(',')}
+                                        value={this.state.genres}
+                                        onChange={this.genreSelectHandler}>
+                                        <MenuItem value="0"> None</MenuItem>
+                                        {genres.map(genre => (
+                                            <MenuItem key={genre.id} value={genre.name}>
+                                                <Checkbox checked={this.state.genres.indexOf(genre.name) > -1} />
+                                                <ListItemText primary={genre.name} />
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+
+
+                                </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel htmlFor="select-multiple-checkBox">Artist</InputLabel>
+                                    <Select
+                                        multiple
+                                        input={<Input id="select-multiple-checkBox" />}
+                                        renderValue={selected => selected.join(',')}
+                                        value={this.state.artists}
+                                        onChange={this.artistSelectHandler}>
+                                        <MenuItem value="0"> None</MenuItem>
+                                        {artists.map(artist => (
+                                            <MenuItem key={artist.id} value={artist.first_name+" "+artist.last_name}>
+                                                <Checkbox checked={this.state.artists.indexOf(artist.first_name+" "+artist.last_name) > -1} />
+                                                <ListItemText primary={artist.first_name+" "+artist.last_name} />
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+
 
                                 </FormControl>
                             </CardContent>
@@ -113,4 +171,4 @@ class Home extends Component {
         )
     }
 }
-    export default withStyles(styles)(Home);
+export default withStyles(styles)(Home);
