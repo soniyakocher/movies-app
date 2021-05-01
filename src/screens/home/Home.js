@@ -21,6 +21,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Checkbox from '@material-ui/core/Checkbox'
 import artists from '../../common/artists'
 import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     root: {
@@ -76,6 +77,7 @@ class Home extends Component {
     artistSelectHandler=(e)=>{
 this.setState({artists:e.target.value})
     }
+    
 
 
     render() {
@@ -184,6 +186,7 @@ this.setState({artists:e.target.value})
                                     </TextField>
 
                                 </FormControl>
+                                <Button  variant="contained" color="primary" style={{width:250}} >APPLY</Button>
                             </CardContent>
                         </Card>
 
