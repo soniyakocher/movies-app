@@ -172,6 +172,18 @@ this.setState({artists:e.target.value})
                                     </TextField>
 
                                 </FormControl>
+
+                                <FormControl className={classes.formControl}>
+                                    <TextField
+                                    id="releaseDateEnd"
+                                    label="Release Date End"
+                                    type="date"
+                                    defaultValue=""
+                                    InputLabelProps={{shrink:true}}>
+
+                                    </TextField>
+
+                                </FormControl>
                             </CardContent>
                         </Card>
 
