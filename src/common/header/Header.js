@@ -154,6 +154,7 @@ inputContactChangeHandler=(e)=>{
                     <div className="login-btn">
                         <Button variant="contained" color="default" onClick={this.openModalHandler}>Login</Button>
                     </div>
+                    
                 </header>
                 <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen} contentLabel="Login" onRequestClose={this.closeModalHandler} style={customStyles}>
                     <Tabs value={this.state.value} onChange={this.tabChangeHandler}>
