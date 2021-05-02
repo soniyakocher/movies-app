@@ -8,13 +8,16 @@ import Home from '../../screens/home/Home'
 import reactDom from 'react-dom';
 import YouTube from 'react-youtube';
 
-
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 class Details extends Component {
     constructor() {
         super();
         this.state = {
             movie: {}
+            
         }
     }
     componentWillMount() {
@@ -29,9 +32,13 @@ class Details extends Component {
     backtohomeHandler=()=>{
         ReactDom.render(<Home/>,document.getElementById('root'))
     }
+     artistClickHandler=(url)=>{
+         window.location=url;
+     }
 
     render() {
         let movie = this.state.movie;
+        
         const opts = {
             height: '300',
             width: '700',
@@ -88,7 +95,22 @@ class Details extends Component {
                     </div>
 
                     <div className="rightDetails">
-
+                        <div>
+                            <Typography>
+                            <span>Artist:</span>
+                            </Typography>
+                        </div>
+                        <div>
+                    <GridList cols={2}  >
+                    {movie.artists!=null &&  movie.artists.map(art => (
+                        <GridListTile key={art.id} className="gridTile"
+                        onClick={()=>this.artistClickHandler(art.wiki_url)}>
+                            <img src={art.profile_url} className="artist-poster" alt={art.first_name+" "+art.last_name} />
+                            <GridListTileBar title={art.first_name + " " + art.last_name} />
+                        </GridListTile>
+                    ))}
+                </GridList>
+                </div>
                     </div>
                 </div>
             </div>
