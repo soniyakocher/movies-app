@@ -13,6 +13,9 @@ import Input from '@material-ui/core/Input';
 
 import PropTypes from 'prop-types';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import ReactDOM from 'react-dom'
+import Details from '../../screens/details/Details';
+import BookShow from '../../screens/bookshow/BookShow';
 
 const customStyles = {
     content: {
@@ -146,6 +149,10 @@ inputRegisterPasswordChangeHandler=(e)=>{
 inputContactChangeHandler=(e)=>{
     this.setState({contactNumber:e.target.value})
 }
+
+bookshowHandler = () => {
+     ReactDOM.render(<BookShow/>,document.getElementById('root'))
+}
     render() {
         return (
             <div>
@@ -154,7 +161,10 @@ inputContactChangeHandler=(e)=>{
                     <div className="login-btn">
                         <Button variant="contained" color="default" onClick={this.openModalHandler}>Login</Button>
                     </div>
-                    
+                    {this.props.showBookShowButton=== 'true'?
+                    <div className = "bookshow-button" >
+                        <Button variant = 'contained' color = "primary"  onClick={this.bookshowHandler}>Book Show</Button>
+                    </div>: ""}
                 </header>
                 <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen} contentLabel="Login" onRequestClose={this.closeModalHandler} style={customStyles}>
                     <Tabs value={this.state.value} onChange={this.tabChangeHandler}>
