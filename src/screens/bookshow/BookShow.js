@@ -17,6 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import { Button, MenuItem } from '@material-ui/core'
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Confirmation from '../confirmation/Confirmation';
 
 
 class BookShow extends Component {
@@ -67,6 +68,8 @@ class BookShow extends Component {
         this.state.showDate === "" ? this.setState({ reqShowDate: "dispBlock" }) : this.setState({ reqShowDate: "dispNone" });
         this.state.showTime === "" ? this.setState({ reqShowTime: "dispBlock" }) : this.setState({ reqShowTime: "dispNone" });
         this.state.tickets === 0 ? this.setState({ reqTickets: "dispBlock" }) : this.setState({ reqTickets: "dispNone" });
+
+        ReactDOM.render(<Confirmation bookingSummary={this.state}/>,document.getElementById('root'))
     }
     render() {
         return (
